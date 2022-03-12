@@ -9,11 +9,25 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    let url = "https://randomuser.me/api/"
+       
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+             
+        getRandomUser()
+
     }
-
-
+    
+    private func getRandomUser() {
+        NetworkManager.shared.fetchData(url: url) { result in
+            switch result {
+            case .success(let users):
+                print(users)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
 
